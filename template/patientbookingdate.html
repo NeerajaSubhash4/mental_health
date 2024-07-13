@@ -1,0 +1,58 @@
+{% extends 'patientbase.html' %}
+{% block content %}
+<style>
+    th,
+    td {
+        padding: 10px;
+    }
+</style>
+<center>
+    <div style="margin: 50px;">
+        <hr>
+        <h2 style="margin: 10px;">Booking</h2>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+
+            <table>
+                <tr>
+                    <td>Booking date</td>
+                    <td><input type="date" id="txtDate" onchange="checkdate()" class="form-control" name="txtDate"
+                            required></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" class="btn btn-primary" style="color: white;" value="Book">
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+    </div>
+</center>
+{% if messages %}
+{% for msg in messages %}
+<script>alert('{{msg}}');</script>
+{% endfor %}
+{% endif %}
+<script>
+    function checkdate() {
+        var d1 = document.getElementById("txtDate").value;
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        dd = parseInt(dd) + 1;
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        debugger;
+        today = yyyy + '-' + mm + '-' + String(dd);
+        if (today > d1) {
+            alert('Invalid date');
+            document.getElementById("book").style.display = "none";
+            document.getElementById("date").value = "";
+
+        }
+        else {
+            document.getElementById("book").style.display = "block";
+        }
+    }
+</script>
+{% endblock %}

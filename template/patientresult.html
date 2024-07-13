@@ -1,0 +1,60 @@
+{% extends 'patientbase.html' %}
+{% block content %}
+<style>
+    th,
+    td {
+        padding: 10px;
+    }
+
+    th {
+        background-color: #429ef5;
+        color: white;
+    }
+</style>
+<center>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>alert('{{msg}}');</script>
+    {% endfor %}
+    {% endif %}
+    <div style="margin: 50px;">
+        <hr>
+        <h2 style="margin: 10px;">Test result</h2>
+        <hr>
+        <table border="0" id="tb" style="width:380px;">
+
+            <tr>
+                <th>Sentiment</th>
+                <th>{{request.session.sentiment}}</th>
+            </tr>
+            <tr>
+                <th>Negativity</th>
+                <th>{{request.session.negative}}</th>
+            </tr>
+            <tr>
+                <th>Positivity</th>
+                <th>{{request.session.positive}}</th>
+            </tr>
+            <tr>
+                <th>Neutral</th>
+                <th>{{request.session.neutral}}</th>
+            </tr>
+            <tr>
+                <th>Level of mental health</th>
+                <th>{{request.session.level}}</th>
+            </tr>
+
+        </table>
+        <hr>
+<div style="margin:50px">
+    <h3>A simple Todo list you can follow</h3><br>
+    <img src="../static/assets/images/todo.jpeg" height="600px" width="500px">
+</div>
+    </div>
+</center>
+<script>
+    var msg = "{{msg}}";
+    if (msg != "")
+        alert(msg)
+</script>
+{% endblock %}

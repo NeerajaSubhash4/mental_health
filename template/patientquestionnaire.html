@@ -1,0 +1,53 @@
+{% extends 'patientbase.html' %}
+{% block content  %}
+<style>
+    td{
+        padding: 10px;
+    }
+</style>
+
+<h1 style="margin:20px;">Take a while to share your thoughts</h1><hr>
+<center>
+    <form action="" method="post" >
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>How is your sleep?</td></tr>
+                <tr><td><textarea class="form-control" name="txtSleep" required></textarea></td>
+            </tr>
+            <tr>
+                <td>How is your energy?</td></tr>
+                <tr><td><textarea class="form-control" name="txtEnergy" required></textarea></td>
+            </tr>
+            <tr>
+                <td>What do you prefer - to stay at home rather than going out and doing new things? Why?</td>
+                <tr><td><textarea class="form-control" name="txtPrefer" required></textarea></td>
+            </tr>
+            <tr>
+                <td>What makes you irritated? Why?</td></tr>
+                <tr><td><textarea class="form-control" name="txtIrritate" required></textarea></td>
+            </tr>
+            <tr>
+                <td>How do you feel about yourself?</td></tr>
+                <tr><td><textarea class="form-control" name="txtYourself" required></textarea></td>
+            </tr>
+            <tr>
+                <td>What makes you relaxed?</td></tr>
+                <tr><td><textarea class="form-control" name="txtRelaxed" required></textarea></td>
+            </tr>
+            
+        </table>
+    <br><input type="submit" value="Submit" style="width: 250px;" class="btn btn-dark"><br><br>
+</form>
+</center>
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+    }
+</script>
+</html>
+
+{% endblock %}

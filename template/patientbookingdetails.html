@@ -1,0 +1,102 @@
+{% extends 'patientbase.html' %}
+{% block content %}
+<style>
+    th,
+    td {
+        padding: 10px;
+    }
+
+    th {
+        background-color: #01025c;
+        color: white;
+    }
+</style>
+<center>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>alert('{{msg}}');</script>
+    {% endfor %}
+    {% endif %}
+    <div style="margin: 50px;">
+        <hr>
+        <h2 style="margin: 10px;">Patient details</h2>
+        <hr>
+        {% if booking %}
+        <table border="0" id="tb">
+
+
+            <tr>
+                <td>Booking Id: {{booking.id}}</td>
+            </tr>
+            <tr>
+                <td>Booking date: {{booking.bookingdate}}</td>
+            </tr>
+            
+        </table>
+        {% endif %}
+        <br>
+        <hr>
+        <h4>Survey details</h4>
+        <hr>
+        <table border="0" style="margin:50px;">
+            {% for d in responsechild %}
+            <tr>
+                <td>{{d.question}}</td>
+                {% if d.response == "1" %}
+                <td>Never</td>
+                {% elif d.response == "2" %}
+                <td>Sometimes</td>
+                {% elif d.response == "3" %}
+                <td>Often</td>
+                {% elif d.response == "4" %}
+                <td>Usually</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+        <hr>
+        <h4>About them</h4>
+        <hr>
+        <table border="0" style="margin:50px;">
+            {% for d in questionnaire %}
+            <tr>
+                <td>{{d.question}}</td>
+                <td>{{d.answer}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <hr>
+        <h4>Overall result</h4>
+        <table border="0" style="margin:50px;">
+            
+            <tr>
+                <td>Positive sentiments</td>
+                <td>{{survey.positive}}</td>
+            </tr>
+            <tr>
+                <td>Negative sentiments</td>
+                <td>{{survey.negative}}</td>
+            </tr>
+            <tr>
+                <td>Neutral sentiments</td>
+                <td>{{survey.neutral}}</td>
+            </tr>
+            <tr>
+                <td>Overall sentiment</td>
+                <td>{{survey.sentiment}}</td>
+            </tr>
+            
+            <tr>
+                <td>Mental health level</td>
+                <td>{{responsemaster.level}}</td>
+            </tr>
+            
+        </table>
+    </div>
+</center>
+<script>
+    var msg = "{{msg}}";
+    if (msg != "")
+        alert(msg)
+</script>
+{% endblock %}

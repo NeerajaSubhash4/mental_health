@@ -1,0 +1,49 @@
+{% extends 'therapistbase.html' %}
+{% block content %}
+<style>
+    th,
+    td {
+        padding: 10px;
+    }
+    th{
+        background-color: #429ef5;
+        color: white;
+    }
+</style>
+<center>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>alert('{{msg}}');</script>
+    {% endfor %}
+    {% endif %}
+    <div style="margin: 50px;">
+        <hr>
+        <h2 style="margin: 10px;">Booking details</h2>
+        <hr>
+       
+        {% if booking %}
+            <table border="0" id="tb" style="width:380px;">
+                <tr>
+                    <th>ID</th>
+                    <th>DATE</th>
+                    <th colspan="2">PATIENT</th>
+                    
+                </tr>
+                {% for s in booking %}
+                <tr>
+                    <td>{{s.id}}</td>
+                    <td>{{s.bookingdate}}</td>
+                    <td>{{s.registration.name}}</td>
+                    <td><a href="therapistpatient?id={{s.id}}">View details</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+    </div>
+</center>
+<script>
+    var msg = "{{msg}}";
+    if (msg != "")
+        alert(msg)
+</script>
+{% endblock %}

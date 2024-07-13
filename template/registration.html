@@ -1,0 +1,55 @@
+{% extends 'commonbase.html' %}
+{% block content %}
+<style>
+    th,
+    td {
+        padding: 10px;
+    }
+</style>
+<center>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>alert('{{msg}}');</script>
+    {% endfor %}
+    {% endif %}
+    <div style="margin: 50px;">
+        <hr>
+        <h2 style="margin: 10px;">Registration</h2>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" class="form-control" name="txtName" pattern="[a-zA-Z ]+" required></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><textarea class="form-control" name="txtAddress" required></textarea></td>
+                </tr>
+                <tr>
+                    <td>Contact</td>
+                    <td><input type="text" pattern="[6789][0-9]{9}" class="form-control" name="txtContact" required></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" class="form-control" name="txtEmail" required></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" class="form-control" name="txtPassword" required></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="btn btn-primary" style="color: white;" value="Register"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</center>
+<script>
+    var msg = "{{msg}}";
+    if (msg != "")
+        alert(msg)
+</script>
+{% endblock %}

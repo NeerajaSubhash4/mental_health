@@ -1,0 +1,44 @@
+{% extends 'patientbase.html' %}
+{% block content %}
+<style>
+    th,td{
+        padding: 10px;
+    }
+    
+    </style>
+    <center>
+    <div style="margin: 50px;">
+        <hr><h2 style="margin: 10px;">Welcome {{ request.session.name }}</h2><hr>    
+        <form method="POST">
+            {% csrf_token %}
+            {% if profile_data %}
+            {% for i in profile_data %}
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" class="form-control" value="{{i.name}}"name="txtName" pattern="[a-zA-Z ]+" required></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><textarea class="form-control" name="txtAddress" required>{{i.address}}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Contact</td>
+                    <td><input type="number" class="form-control" value="{{i.phone}}" name="txtContact" required></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" class="form-control" value="{{i.email}}" name="txtEmail" required></td>
+                </tr>
+            </table>
+            {%endfor%}
+            {% endif %}
+        </form>
+    </div>
+    </center>
+    <script>
+        var msg="{{msg}}";
+        if(msg!="")
+            alert(msg)
+        </script>
+{% endblock %}
